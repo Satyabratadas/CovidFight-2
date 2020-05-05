@@ -42,13 +42,12 @@ public class signup_form extends AppCompatActivity implements View.OnClickListen
         if(TextUtils.isEmpty(passward)){
             Toast.makeText(signup_form.this,"Please Enter passward",Toast.LENGTH_SHORT).show();
         }
-        Call<ResponseBody> call =RetrofitClient.getInstance().getApi().register(username,passward,email);
+        Call<ResponseBody> call =RetrofitClient.getInstance().getApi().register(new RegisterRequest(username, email, passward));
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 Log.d("signup_form","Response successful");
-                response.code();
                 Log.d("MainActivity", String.valueOf(response.code()));
 
             }
