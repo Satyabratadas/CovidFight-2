@@ -10,4 +10,6 @@ import retrofit2.http.POST;
 public interface Api {
     @POST("register/")
     Call<ResponseBody> register(@Body RegisterRequest registerRequest);
+    @POST("login/")
+    Call<User> login(@Body LoginRequest loginRequest);
 }

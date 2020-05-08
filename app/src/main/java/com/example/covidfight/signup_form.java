@@ -15,14 +15,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class signup_form extends AppCompatActivity implements View.OnClickListener {
-    EditText txt_username,txt_email,txt_passward;
+    EditText txt_username,txt_email,txt_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_form);
         txt_username = findViewById(R.id.txt_username);
-        txt_passward = findViewById(R.id.txt_passward);
+        txt_password = findViewById(R.id.txt_passward);
         txt_email = findViewById(R.id.txt_email);
         findViewById(R.id.button3).setOnClickListener(this);
 
@@ -30,7 +30,7 @@ public class signup_form extends AppCompatActivity implements View.OnClickListen
     private void userSignup(){
         String username = txt_username.getText().toString().trim();
         String email = txt_email.getText().toString().trim();
-        String passward = txt_passward.getText().toString().trim();
+        String password = txt_password.getText().toString().trim();
         if(TextUtils.isEmpty(username)){
             Toast.makeText(signup_form.this,"Please Enter Username",Toast.LENGTH_SHORT).show();
             return;
@@ -39,10 +39,10 @@ public class signup_form extends AppCompatActivity implements View.OnClickListen
             Toast.makeText(signup_form.this,"Please Enter email",Toast.LENGTH_SHORT).show();
             return;
         }
-        if(TextUtils.isEmpty(passward)){
+        if(TextUtils.isEmpty(password)){
             Toast.makeText(signup_form.this,"Please Enter passward",Toast.LENGTH_SHORT).show();
         }
-        Call<ResponseBody> call =RetrofitClient.getInstance().getApi().register(new RegisterRequest(username, email, passward));
+        Call<ResponseBody> call =RetrofitClient.getInstance().getApi().register(new RegisterRequest(username, email, password));
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
