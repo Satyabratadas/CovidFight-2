@@ -13,7 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".home"></activity>
+        <activity android:name=".reminder"></activity>
+        <activity android:name=".darkside" />
+        <activity android:name=".prediction" />
+        <activity android:name=".awarness" />
+        <activity android:name=".social_distance" />
+        <activity android:name=".home" />
         <activity android:name=".signup_form" />
         <activity android:name=".login_form" />
         <activity android:name=".MainActivity">

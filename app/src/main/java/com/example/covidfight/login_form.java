@@ -4,12 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,41 +32,24 @@ public class login_form extends AppCompatActivity implements View.OnClickListene
 
     }
     private static String token;
-    private void userLogin(){
+    private void userLogin() {
 
         String username = txt_username.getText().toString().trim();
         String password = txt_password.getText().toString().trim();
-        if(TextUtils.isEmpty(username)){
-            Toast.makeText(login_form.this,"Please Enter username",Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(username)) {
+            Toast.makeText(login_form.this, "Please Enter username", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(TextUtils.isEmpty(password)){
-            Toast.makeText(login_form.this,"Please Enter password",Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(login_form.this, "Please Enter password", Toast.LENGTH_SHORT).show();
 
         }
-        Call<User> call =RetrofitClient.getInstance().getApi().login(new LoginRequest(username,  password));
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful()) {
-                    assert response.body() != null;
-                    Toast.makeText(login_form.this, response.body().getToken(), Toast.LENGTH_SHORT).show();
-                    token = response.body().getToken();
-                    Intent sign = new Intent(login_form.this, home.class);
-                    startActivity(sign);
-                }
-                else{
-                    Toast.makeText(login_form.this, "login not correct", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(login_form.this,"error",Toast.LENGTH_LONG).show();
-
-            }
-        });
 
     }
+
+
+
+
     private void usersign(){
         Intent sign = new Intent(this, signup_form.class);
         startActivity(sign);
