@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/coback2"
+    android:background="@drawable/gradient_background"
     android:orientation="vertical"
     android:padding="30dp"
     tools:context=".login_form"
     tools:ignore="ContentDescription">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="40dp">
 
     <ImageView
         android:layout_width="match_parent"
@@ -39,9 +44,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:autofillHints="@string/Passward"
+        android:autofillHints="@string/Password"
         android:ems="10"
-        android:hint="@string/Passward"
+        android:hint="@string/Password"
         android:inputType="textPassword"
         android:textColor="@color/colorAccent"
         android:textColorHint="@color/colorAccent"
@@ -67,7 +72,8 @@
         android:textColor="#ffffff"
         android:textSize="30sp"
         android:textStyle="bold" />
+    </LinearLayout>
 
 
 
-</LinearLayout>
+</ScrollView>

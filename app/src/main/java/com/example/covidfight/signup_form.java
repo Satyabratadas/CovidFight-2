@@ -2,12 +2,14 @@ package com.example.covidfight;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -15,7 +17,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class signup_form extends AppCompatActivity implements View.OnClickListener {
-    EditText txt_username,txt_email,txt_password;
+    EditText txt_username,txt_email,txt_password,txt_type;
+
+    SessionManager session;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,7 @@ public class signup_form extends AppCompatActivity implements View.OnClickListen
         txt_username = findViewById(R.id.txt_username);
         txt_password = findViewById(R.id.txt_passward);
         txt_email = findViewById(R.id.txt_email);
+        txt_type = findViewById(R.id.txt_type);
         findViewById(R.id.button3).setOnClickListener(this);
 
     }
@@ -31,6 +37,7 @@ public class signup_form extends AppCompatActivity implements View.OnClickListen
         String username = txt_username.getText().toString().trim();
         String email = txt_email.getText().toString().trim();
         String password = txt_password.getText().toString().trim();
+        String user_type = txt_type.getText().toString().trim();
         if(TextUtils.isEmpty(username)){
             Toast.makeText(signup_form.this,"Please Enter Username",Toast.LENGTH_SHORT).show();
             return;
@@ -40,26 +47,40 @@ public class signup_form extends AppCompatActivity implements View.OnClickListen
             return;
         }
         if(TextUtils.isEmpty(password)){
-            Toast.makeText(signup_form.this,"Please Enter passward",Toast.LENGTH_SHORT).show();
+            Toast.makeText(signup_form.this,"Please Enter password",Toast.LENGTH_SHORT).show();
         }
-        Call<ResponseBody> call =RetrofitClient.getInstance().getApi().register(new RegisterRequest(username, email, password));
+        Call<ResponseBody> call =RetrofitClient.getInstance().getApi().register(new RegisterRequest(username, email, password,user_type));
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                Log.d("signup_form","Response successful");
-                Log.d("MainActivity", String.valueOf(response.code()));
-
+                if(response.isSuccessful()){
+                    try {
+                        assert response.body() != null;
+                        token=response.body().string();
+                        session.createLoginSession(token);
+                        Intent i = new Intent(getApplicationContext(),home.class);
+                        startActivity(i);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Toast.makeText(signup_form.this,"sign up failed",Toast.LENGTH_LONG).show();
+                }
+                // Log.d("signup_form","Response successful");
+                // Log.d("MainActivity", String.valueOf(response.code()));
             }
+
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-               // Toast.makeText(signup_form.this,t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(signup_form.this,"check the connection",Toast.LENGTH_LONG).show();
 
             }
         });
     }
 
-    @Override
+
+
+            @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button3) {
             userSignup();

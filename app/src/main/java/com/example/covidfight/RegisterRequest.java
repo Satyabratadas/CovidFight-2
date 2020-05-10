@@ -9,13 +9,15 @@ public class RegisterRequest {
     private String email;
     @SerializedName("password")
     private String password;
+    @SerializedName("user_type")
+    private String user_type;
 
-    public RegisterRequest(String username, String email, String password) {
+    public RegisterRequest( String username, String email, String password,String user_type) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.user_type = user_type;
     }
-
     public String getUsername() {
         return username;
     }
@@ -38,5 +40,13 @@ public class RegisterRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(String user_type) {
+        this.user_type = user_type;
     }
 }

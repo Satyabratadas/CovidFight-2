@@ -1,17 +1,20 @@
 <resources>
     <string name="app_name">CovidFight</string>
+    <string name="cotxt">COVID-FIGHT</string>
+    <string name="user_types"> Select from here ->(Shopkeeper/Doctor/Normal_User)</string>
     <string name="User_Name">User Name</string>
+    <string name="types">User Types</string>
     <string name="Email">Email</string>
-    <string name="Passward">Passward</string>
+    <string name="Password">Password</string>
     <string name="Login">Login</string>
     <string name="Register">Register</string>
     <string name="Submit">Submit</string>
     <string name="shopkeeper">Shopkeeper</string>
     <string name="doctor">Doctor</string>
     <string name="social">Social Distancing</string>
-    <string name="awar">Awarness</string>
-    <string name="curve">Ovserve the curve</string>
-    <string name="prediction">Ovserve the prediction</string>
+    <string name="awar">Awareness</string>
+    <string name="curve">Observe the curve</string>
+    <string name="prediction">Observe the prediction</string>
     <string name="dark">See the dark side</string>
     <string name="noti">Notification</string>
     <string name="user">Normal user</string>
@@ -25,5 +28,5 @@
     <string name="title">Enter Question Title</string>
     <string name="description">Enter Description</string>
     <string name="post">Search By post name</string>
-    <string name="reminder">Select the time for remind you to wash your hand properly and sanitize your hand and some massage !!</string>
+    <string name="reminder">Select the time for remind you to wash your hand!!</string>
 </resources>

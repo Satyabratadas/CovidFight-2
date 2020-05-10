@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/coback2"
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:background="@drawable/gradient_background"
     tools:context=".signup_form">
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,9 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:autofillHints="@string/Passward"
+            android:autofillHints="@string/Password"
             android:ems="10"
-            android:hint="@string/Passward"
+            android:hint="@string/Password"
             android:inputType="textPassword"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/colorAccent"
@@ -41,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:autofillHints="@string/User_Name"
+            android:autofillHints="@string/Email"
             android:ems="10"
             android:hint="@string/Email"
             android:inputType="text"
@@ -50,6 +52,29 @@
             android:textSize="30sp"
             android:textStyle="italic"
             tools:ignore="TextFields" />
+        <EditText
+            android:id="@+id/txt_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:autofillHints="@string/types"
+            android:ems="10"
+            android:hint="@string/types"
+            android:inputType="text"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            tools:ignore="TextFields" />
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_types"
+            android:layout_marginTop="20dp"
+            android:textSize="30sp"
+            android:textColor="@color/colorAccent"/>
+
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"

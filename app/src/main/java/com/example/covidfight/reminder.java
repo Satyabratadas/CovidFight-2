@@ -60,7 +60,7 @@ public class reminder extends AppCompatActivity implements TimePickerDialog.OnTi
     }
 
     private void updateTimeText(Calendar c) {
-        String timeText = "Alarm set for: ";
+        String timeText = "Reminder set for: ";
         timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
 
         mTextView.setText(timeText);

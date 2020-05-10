@@ -40,9 +40,8 @@ public class NotificationHelper extends ContextWrapper {
     public NotificationCompat.Builder getChannelNotification() {
         return new NotificationCompat.Builder(getApplicationContext(), channelID)
                 .setContentTitle("It,s Time to Clean up ")
-                .setContentText("Wash your hand properly" +
-                        " with handwash and sanitize your" +
-                        " hand with Sanitizer")
+                .setContentText("Wash your hand properly and sanitize"
+                        )
                 .setSmallIcon(R.drawable.ic_launcher_foreground);
     }
 }

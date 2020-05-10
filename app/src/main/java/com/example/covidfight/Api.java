@@ -8,5 +8,7 @@ import retrofit2.http.POST;
 public interface Api {
     @POST("register/")
     Call<ResponseBody> register(@Body RegisterRequest registerRequest);
+    @POST("login/")
+    Call<ResponseBody> login(@Body LoginRequest loginRequest);
 
 }
