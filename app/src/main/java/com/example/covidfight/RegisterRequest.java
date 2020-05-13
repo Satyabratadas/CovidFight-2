@@ -12,10 +12,10 @@ public class RegisterRequest {
     @SerializedName("user_type")
     private String user_type;
 
-    public RegisterRequest( String username, String email, String password,String user_type) {
+    public RegisterRequest( String username, String password, String email,String user_type) {
         this.username = username;
-        this.email = email;
         this.password = password;
+        this.email = email;
         this.user_type = user_type;
     }
     public String getUsername() {

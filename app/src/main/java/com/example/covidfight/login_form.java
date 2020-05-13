@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -49,10 +50,11 @@ public class login_form extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if(response.isSuccessful()){
+                    Log.d("MainActivity", String.valueOf(response.code()));
                     try {
                         assert response.body() != null;
                         token=response.body().string();
-                        session.createLoginSession(token);
+                       session.createLoginSession(token);
                         Intent i = new Intent(getApplicationContext(),home.class);
                         startActivity(i);
                     } catch (IOException e) {

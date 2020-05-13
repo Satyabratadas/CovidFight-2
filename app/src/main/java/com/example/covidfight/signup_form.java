@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,8 +20,8 @@ import retrofit2.Response;
 public class signup_form extends AppCompatActivity implements View.OnClickListener {
     EditText txt_username,txt_email,txt_password,txt_type;
 
-    SessionManager session;
-    String token;
+
+    String token ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,23 +50,29 @@ public class signup_form extends AppCompatActivity implements View.OnClickListen
         if(TextUtils.isEmpty(password)){
             Toast.makeText(signup_form.this,"Please Enter password",Toast.LENGTH_SHORT).show();
         }
-        Call<ResponseBody> call =RetrofitClient.getInstance().getApi().register(new RegisterRequest(username, email, password,user_type));
+        Call<ResponseBody> call =RetrofitClient.getInstance().getApi().register(new RegisterRequest(username,  password,email,user_type));
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d("MainActivity", String.valueOf(response.code()));
                 if(response.isSuccessful()){
                     try {
+                       // Toast.makeText(signup_form.this,response.body().string(),Toast.LENGTH_LONG).show();
                         assert response.body() != null;
-                        token=response.body().string();
-                        session.createLoginSession(token);
-                        Intent i = new Intent(getApplicationContext(),home.class);
-                        startActivity(i);
+                        token = response.body().string();
+
+
+
+
+                            Intent i = new Intent(getApplicationContext(), home.class);
+                            startActivity(i);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }else{
                     Toast.makeText(signup_form.this,"sign up failed",Toast.LENGTH_LONG).show();
-                }
+               }
                 // Log.d("signup_form","Response successful");
                 // Log.d("MainActivity", String.valueOf(response.code()));
             }
